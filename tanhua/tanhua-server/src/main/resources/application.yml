@@ -24,28 +24,29 @@ tanhua:
   secret: 76bd425b6f29f7fcc2e0bfc286043df1
   #redis 的前缀名
   redisValidateCodeKeyPrefix: VALIDATECODE_
+  这里填写第三方功能
   sms:
-    signName: 黑马程序员
-    parameterName: code
-    validateCodeTemplateCode: SMS_164508533
-    accessKeyId: LTAI5tDRHQk6hfL9JWTcDpWo
-    accessKeySecret: UP9EpSxxSYWcMLNpdBSYMW1keEkdL3
+
+
+
+
+
   oss:
-    endpoint: http://oss-cn-shenzhen.aliyuncs.com
-    bucketName: caitanhua
-    url: https://caitanhua.oss-cn-shenzhen.aliyuncs.com
-    accessKeyId: LTAI5tCGP3TYek7H4nCVMsjU
-    accessKeySecret: 4avxcr48nboiPPzveK3sW96wi9zb4Q
+
+
+
+
+
   face:
-    appId: 24582559
-    apiKey: zqbl512VlMSPKTFVEwT8QG4v
-    secretKey: ajq83HEcIOIXAyYNxmcwrQOyGwEZBTeH
+
+
+    
   huanxin:
-    url: http://a1.easemob.com/
-    orgName: 1155210719148964
-    appName: tanhua
-    clientId: YXA6IYBAaf3PS1uzDHtehiWiJw
-    clientSecret: YXA6WmFdepy-ukWGLfDBxZLHqzx4sAU
+
+
+
+
+
 #redis
 spring:
   redis:
