@@ -1,0 +1,71 @@
+server:
+  port: 81
+
+
+dubbo:
+  application:
+    name: tanhua-server
+  registry:
+    address: zookeeper://192.168.56.161:2181
+  consumer:
+    check: false
+  #log
+logging:
+  level:
+    root: info
+    com:
+      tanhua: debug
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %msg - %logger{15}%n\'
+
+
+tanhua:
+  #jwt 密钥
+  secret: 76bd425b6f29f7fcc2e0bfc286043df1
+  #redis 的前缀名
+  redisValidateCodeKeyPrefix: VALIDATECODE_
+  sms:
+    signName: 黑马程序员
+    parameterName: code
+    validateCodeTemplateCode: SMS_164508533
+    accessKeyId: LTAI5tDRHQk6hfL9JWTcDpWo
+    accessKeySecret: UP9EpSxxSYWcMLNpdBSYMW1keEkdL3
+  oss:
+    endpoint: http://oss-cn-shenzhen.aliyuncs.com
+    bucketName: caitanhua
+    url: https://caitanhua.oss-cn-shenzhen.aliyuncs.com
+    accessKeyId: LTAI5tCGP3TYek7H4nCVMsjU
+    accessKeySecret: 4avxcr48nboiPPzveK3sW96wi9zb4Q
+  face:
+    appId: 24582559
+    apiKey: zqbl512VlMSPKTFVEwT8QG4v
+    secretKey: ajq83HEcIOIXAyYNxmcwrQOyGwEZBTeH
+  huanxin:
+    url: http://a1.easemob.com/
+    orgName: 1155210719148964
+    appName: tanhua
+    clientId: YXA6IYBAaf3PS1uzDHtehiWiJw
+    clientSecret: YXA6WmFdepy-ukWGLfDBxZLHqzx4sAU
+#redis
+spring:
+  redis:
+    host: 192.168.56.161
+    port: 6379
+  servlet:
+    multipart:
+      max-file-size: 30MB
+      max-request-size: 30MB
+# ===================================================================
+# 分布式文件系统FDFS配置
+# ===================================================================
+fdfs:
+  so-timeout: 1500
+  connect-timeout: 600
+  #缩略图生成参数
+  thumb-image:
+    width: 150
+    height: 150
+  #TrackerList参数，支持多个
+  tracker-list: 192.168.56.161:22122
+  web-server-url: http://192.168.56.161:8888/
+
