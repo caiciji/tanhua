@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/tanhua.iml" filepath="$PROJECT_DIR$/tanhua.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tanhua-commons/tanhua-commons.iml" filepath="$PROJECT_DIR$/tanhua-commons/tanhua-commons.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tanhua-domain/tanhua-domain.iml" filepath="$PROJECT_DIR$/tanhua-domain/tanhua-domain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tanhua-dubbo/tanhua-dubbo.iml" filepath="$PROJECT_DIR$/tanhua-dubbo/tanhua-dubbo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tanhua-dubbo/tanhua-dubbo-interface/tanhua-dubbo-interface.iml" filepath="$PROJECT_DIR$/tanhua-dubbo/tanhua-dubbo-interface/tanhua-dubbo-interface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tanhua-dubbo/tanhua-dubbo-service/tanhua-dubbo-service.iml" filepath="$PROJECT_DIR$/tanhua-dubbo/tanhua-dubbo-service/tanhua-dubbo-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tanhua-server/tanhua-server.iml" filepath="$PROJECT_DIR$/tanhua-server/tanhua-server.iml" />
+    </modules>
+  </component>
+</project>

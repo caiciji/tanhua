@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="tanhua-dubbo-service" />
+        <module name="tanhua-commons" />
+        <module name="tanhua-dubbo-interface" />
+        <module name="tanhua-server" />
+        <module name="tanhua-domain" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="tanhua" target="1.8" />
+      <module name="tanhua-commons" target="1.8" />
+      <module name="tanhua-domain" target="1.8" />
+      <module name="tanhua-dubbo" target="1.8" />
+      <module name="tanhua-dubbo-interface" target="1.8" />
+      <module name="tanhua-dubbo-service" target="1.8" />
+      <module name="tanhua-server" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="tanhua-commons" options="-parameters" />
+      <module name="tanhua-domain" options="-parameters" />
+      <module name="tanhua-dubbo-interface" options="-parameters" />
+      <module name="tanhua-dubbo-service" options="-parameters" />
+      <module name="tanhua-server" options="-parameters" />
+    </option>
+  </component>
+</project>
