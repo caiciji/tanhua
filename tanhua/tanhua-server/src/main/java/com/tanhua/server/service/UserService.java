@@ -8,10 +8,13 @@ import com.tanhua.commons.templates.OssTemplate;
 import com.tanhua.commons.templates.SmsTemplate;
 import com.tanhua.domain.db.User;
 import com.tanhua.domain.db.UserInfo;
-import com.tanhua.domain.vo.ErrorResult;
-import com.tanhua.domain.vo.UserInfoVo;
+import com.tanhua.domain.mongo.RecommendUser;
+import com.tanhua.domain.vo.*;
 import com.tanhua.dubbo.api.UserApi;
 import com.tanhua.dubbo.api.UserInfoApi;
+import com.tanhua.dubbo.api.mongo.FriendApi;
+import com.tanhua.dubbo.api.mongo.VisitorApi;
+import com.tanhua.dubbo.api.mongo.userLikeApi;
 import com.tanhua.server.interceptor.UserHolder;
 import com.tanhua.server.utils.GetAgeUtils;
 import com.tanhua.server.utils.JwtUtils;
@@ -24,12 +27,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 
 /**
@@ -44,6 +50,15 @@ public class UserService {
 
     @Reference
     private UserInfoApi userInfoApi;
+
+    @Reference
+    private FriendApi friendApi;
+
+    @Reference
+    private VisitorApi visitorApi;
+
+    @Reference
+    private com.tanhua.dubbo.api.mongo.userLikeApi userLikeApi;
 
     @Value("${tanhua.redisValidateCodeKeyPrefix}")
     private String redisValidateCodeKeyPrefix;
@@ -309,5 +324,89 @@ public class UserService {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 互相喜欢，喜欢，粉丝 - 统计
+     * @return
+     */
+    public CountsVo counts() {
+        Long loginUserId = UserHolder.getUserId();
+        //1.查询互相喜欢统计
+        Long eachLoveCount=friendApi.countByUserId(loginUserId);
+        //2. 查询我喜欢的统计
+        Long loveCount= userLikeApi.loveCount(loginUserId);
+        //3.查询喜欢我(粉丝)统计
+        Long fanCount= userLikeApi.fanCount(loginUserId);
+        //4.转成vo
+        CountsVo countsVo=new CountsVo();
+        countsVo.setEachLoveCount(eachLoveCount);
+        countsVo.setLoveCount(loveCount);
+        countsVo.setFanCount(fanCount);
+        return countsVo;
+    }
+
+    /**
+     * 互相喜欢、喜欢、粉丝、谁看过我 - 翻页列表
+     * 1 互相关注
+     * 2 我关注
+     * 3 粉丝
+     * 4 谁看过我
+     * @param type
+     * @param page
+     * @param pageSize
+     * @return
+     */
+    public PageResult<FriendVo> queryUserLikeList(int type, Long page, Long pageSize) {
+        //1.根据type调用api查询，返回统计数据
+        PageResult pageResult=null;
+        Boolean alreadyLove=false;
+        switch (type){
+            case 1:pageResult=friendApi.findPageWithScore(UserHolder.getUserId(),page,pageSize);alreadyLove=true;break;
+            case 2:pageResult=userLikeApi.findPageOneSideLike(UserHolder.getUserId(),page,pageSize);alreadyLove=true;break;
+            case 3:pageResult=userLikeApi.findPageFens(UserHolder.getUserId(),page,pageSize);break;
+            case 4:pageResult=visitorApi.findPageByUserId(UserHolder.getUserId(),page,pageSize);break;
+            default: throw new TanHuaException("参数不对");
+        }
+        //2.获取登陆用户集合
+        List<RecommendUser> userList = pageResult.getItems();
+        if(!CollectionUtils.isEmpty(userList)){
+            List<Long> userIds = userList.stream().map(RecommendUser::getUserId).collect(Collectors.toList());
+            //3.批量查询用户信息
+            List<UserInfo> userInfoList = userInfoApi.findByBatchId(userIds);
+            //4.转成map
+            Map<Long, UserInfo> userInfoMap = userInfoList.stream().collect(Collectors.toMap(UserInfo::getId, u -> u));
+
+            final boolean finalAlreadyLove=alreadyLove;
+            List<FriendVo> voList = userList.stream().map(recommendUser -> {
+                FriendVo vo = new FriendVo();
+                //获取属性
+                UserInfo userInfo = userInfoMap.get(recommendUser.getUserId());
+                //复制属性
+                BeanUtils.copyProperties(userInfo, vo);
+                //设置缘分值
+                vo.setMatchRate(recommendUser.getScore().intValue());
+                vo.setAlreadyLove(finalAlreadyLove);
+                return vo;
+            }).collect(Collectors.toList());
+          //设置pageResult
+            pageResult.setItems(voList);
+        }
+        return pageResult;
+    }
+
+    /**
+     * 粉丝 - 喜欢
+     * @param fansId
+     */
+    public void fansLike(Long fansId) {
+        //1.获取登录用户id
+        Long loginUserId = UserHolder.getUserId();
+        //2.调用api，实现添加好友的动态
+       boolean flag= userLikeApi.fansList(loginUserId,fansId);
+       if(flag){
+           //如果添加好友动态，环信也要添加好友
+           huanXinTemplate.makeFriends(loginUserId,fansId);
+       }
     }
 }

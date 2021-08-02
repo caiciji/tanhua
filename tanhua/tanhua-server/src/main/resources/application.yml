@@ -24,29 +24,7 @@ tanhua:
   secret: 76bd425b6f29f7fcc2e0bfc286043df1
   #redis 的前缀名
   redisValidateCodeKeyPrefix: VALIDATECODE_
-  这里填写第三方功能
-  sms:
-
-
-
-
-
-  oss:
-
-
-
-
-
-  face:
-
-
-    
-  huanxin:
-
-
-
-
-
+  #第3方协议
 #redis
 spring:
   redis:

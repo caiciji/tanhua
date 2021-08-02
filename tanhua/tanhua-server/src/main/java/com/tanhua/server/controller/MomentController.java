@@ -3,6 +3,7 @@ package com.tanhua.server.controller;
 import com.tanhua.domain.vo.MomentVo;
 import com.tanhua.domain.vo.PageResult;
 import com.tanhua.domain.vo.PublishVo;
+import com.tanhua.domain.vo.VisitorVo;
 import com.tanhua.server.service.CommentService;
 import com.tanhua.server.service.MomentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.ArrayList;
 import java.util.List;
+
 
 @RestController
 @RequestMapping("/movements")
@@ -133,11 +134,12 @@ public class MomentController {
     /**
      * 防止后台报错
      * 第9天才实现
+     * 查询谁看过我
      * @return
      */
     @GetMapping("/visitors")
     public ResponseEntity visitors(){
-        List<Object> list=new ArrayList<>();
-        return ResponseEntity.ok(list);
+        List<VisitorVo> vo =momentService.queryVisitors();
+        return ResponseEntity.ok(vo);
     }
 }

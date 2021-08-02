@@ -12,5 +12,5 @@ public class VisitorVo implements Serializable {
     private String gender;
     private Integer age;
     private String[] tags;
-    private Integer fateValue; 
+    private Integer fateValue;
 }

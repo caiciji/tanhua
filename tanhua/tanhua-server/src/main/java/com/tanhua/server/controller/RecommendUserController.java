@@ -1,6 +1,7 @@
 package com.tanhua.server.controller;
 
 import com.tanhua.domain.mongo.RecommendUser;
+import com.tanhua.domain.vo.NearUserVo;
 import com.tanhua.domain.vo.PageResult;
 import com.tanhua.domain.vo.RecommendUserQueryParam;
 import com.tanhua.domain.vo.RecommendUserVo;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -70,5 +72,16 @@ public class RecommendUserController {
     public ResponseEntity replyStrangerQuestions(@RequestBody Map<String,Object> paramMap){
         recommendUserService.replyStrangerQuestions(paramMap);
         return ResponseEntity.ok(null);
+    }
+
+
+    /**
+     * 搜附近
+     * @return
+     */
+    @GetMapping("/search")
+    public ResponseEntity searchNearBy(String gender,Long distance){
+       List<NearUserVo> list=recommendUserService.searchNearBy(gender,distance);
+       return ResponseEntity.ok(list);
     }
 }

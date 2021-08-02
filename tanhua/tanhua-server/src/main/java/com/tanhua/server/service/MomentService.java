@@ -4,15 +4,20 @@ import com.tanhua.commons.exception.TanHuaException;
 import com.tanhua.commons.templates.OssTemplate;
 import com.tanhua.domain.db.UserInfo;
 import com.tanhua.domain.mongo.Publish;
+import com.tanhua.domain.mongo.Visitor;
 import com.tanhua.domain.vo.MomentVo;
 import com.tanhua.domain.vo.PageResult;
 import com.tanhua.domain.vo.PublishVo;
+import com.tanhua.domain.vo.VisitorVo;
 import com.tanhua.dubbo.api.UserInfoApi;
 import com.tanhua.dubbo.api.mongo.PublishApi;
+import com.tanhua.dubbo.api.mongo.VisitorApi;
 import com.tanhua.server.interceptor.UserHolder;
 import com.tanhua.server.utils.RelativeDateFormat;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.dubbo.common.utils.StringUtils;
+import org.apache.commons.lang3.RandomUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.time.DateUtils;
 import org.apache.dubbo.config.annotation.Reference;
 import org.bson.types.ObjectId;
 import org.springframework.beans.BeanUtils;
@@ -38,6 +43,9 @@ public class MomentService {
 
     @Reference
     private UserInfoApi userInfoApi;
+
+    @Reference
+    private VisitorApi visitorApi;
 
 
     @Autowired
@@ -114,7 +122,7 @@ public class MomentService {
                 // 作者信息
                 UserInfo userInfo = userInfoMap.get(publish.getUserId());
                 BeanUtils.copyProperties(userInfo,vo);
-                vo.setTags(StringUtils.split(userInfo.getTags(),','));
+                vo.setTags(StringUtils.split(userInfo.getTags(),","));
                 // 动态的id
                 vo.setId(publish.getId().toHexString());
                 String key = "publish_like_" + loginUserId + "_" + vo.getId();
@@ -279,5 +287,53 @@ public class MomentService {
         }
         //7.返回vo
         return vo;
+    }
+
+    /**
+     * 查询谁看过我
+     * @return
+     */
+    public List<VisitorVo> queryVisitors() {
+        //1.调用api查询登录用户的访客
+         List<Visitor> visitorList=visitorApi.findLast4Visitors(UserHolder.getUserId());
+        //2.如果为空就给默认4条访客
+         if(CollectionUtils.isEmpty(visitorList)){
+             visitorList=getDefaultVisitors();
+         }
+         //3.查看访客的id
+        List<Long> uesrIds = visitorList.stream().map(Visitor::getVisitorUserId).collect(Collectors.toList());
+         //4.批量查询
+        List<UserInfo> userInfoList = userInfoApi.findByBatchId(uesrIds);
+        Map<Long, UserInfo> userInfoMap = userInfoList.stream().collect(Collectors.toMap(UserInfo::getId, u -> u));
+        //5.转成vo
+        List<VisitorVo> voList = visitorList.stream().map(visitor -> {
+            VisitorVo vo = new VisitorVo();
+            UserInfo userInfo = userInfoMap.get(visitor.getVisitorUserId());
+            BeanUtils.copyProperties(userInfo,vo);
+            vo.setTags(StringUtils.split(userInfo.getTags(),","));
+            vo.setFateValue(visitor.getScore().intValue());
+            return vo;
+        }).collect(Collectors.toList());
+        //6.返回
+        return voList;
+    }
+
+    public List<Visitor> getDefaultVisitors(){
+        List<Visitor> visitorList=new ArrayList<>();
+        for (long i = 1; i <=4; i++) {
+            Visitor visitor = new Visitor();
+            visitor.setFrom("首页");
+            visitor.setUserId(UserHolder.getUserId());//用户id
+            visitor.setVisitorUserId(i);
+            visitor.setScore(RandomUtils.nextDouble(60,80));
+            //随机几个小时前
+            Date date = DateUtils.addHours(new Date(), RandomUtils.nextInt(3, 10));
+            visitor.setDate(date.getTime());
+
+            visitorList.add(visitor);
+        }
+
+
+        return visitorList;
     }
 }

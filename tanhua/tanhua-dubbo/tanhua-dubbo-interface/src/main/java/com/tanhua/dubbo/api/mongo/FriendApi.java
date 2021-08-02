@@ -20,4 +20,20 @@ public interface FriendApi {
      * @return
      */
     PageResult findPage(Long userId, Long page, Long pageSize);
+
+    /**
+     * 查询互相喜欢统计
+     * @param loginUserId
+     * @return
+     */
+    Long countByUserId(Long loginUserId);
+
+    /**
+     * 查询互相喜欢的信息
+     * @param userId
+     * @param page
+     * @param pageSize
+     * @return
+     */
+    PageResult findPageWithScore(Long userId, Long page, Long pageSize);
 }

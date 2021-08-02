@@ -1,6 +1,7 @@
 package com.tanhua.dubbo.api.mongo;
 
 import com.tanhua.domain.mongo.Friend;
+import com.tanhua.domain.mongo.RecommendUser;
 import com.tanhua.domain.vo.PageResult;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.data.mongodb.core.query.Query;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -77,5 +79,51 @@ public class FriendApiImpl implements FriendApi {
         }
         //4.返回pageResult
         return PageResult.pageResult(page,pageSize,friendList,total);
+    }
+
+    /**
+     * 查询互相喜欢统计
+     * @param loginUserId
+     * @return
+     */
+    @Override
+    public Long countByUserId(Long loginUserId) {
+        Query query=new Query(Criteria.where("userId").is(loginUserId));
+        return mongoTemplate.count(query,Friend.class);
+    }
+
+    /**
+     * 查询互相喜欢的用户信息
+     * @param loginUserId
+     * @param page
+     * @param pageSize
+     * @return
+     */
+    @Override
+    public PageResult findPageWithScore(Long loginUserId, Long page, Long pageSize) {
+        //1.查询user_friend
+        //构建条件
+        Query query=new Query(Criteria.where("userId").is(loginUserId));
+        //统计总数
+        long total = mongoTemplate.count(query, Friend.class);
+        //总数>0
+        List<RecommendUser> recommendUserList=new ArrayList<>();
+        if(total>0){
+            //设置分页
+            query.skip((page-1)*pageSize).limit(pageSize.intValue());
+            //设值降序
+            query.with(Sort.by(Sort.Order.desc("created")));
+            //查询登录用户与好友的缘分值
+            //查询结果集
+            List<Friend> friendList = mongoTemplate.find(query, Friend.class);
+            //查询登录用户与好友的缘分值ids
+            List<Long> friendIds = friendList.stream().map(Friend::getFriendId).collect(Collectors.toList());
+            //构建推荐表的条件
+            Query recommendUserQuery=new Query(Criteria.where("toUserId").is(loginUserId).and("userId").in(friendIds));
+            //查询
+            recommendUserList = mongoTemplate.find(recommendUserQuery, RecommendUser.class);
+        }
+        //返回PageResult
+        return PageResult.pageResult(page,pageSize,recommendUserList,total);
     }
 }

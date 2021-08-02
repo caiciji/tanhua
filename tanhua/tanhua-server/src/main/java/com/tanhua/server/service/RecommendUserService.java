@@ -5,9 +5,7 @@ import com.tanhua.commons.templates.HuanXinTemplate;
 import com.tanhua.domain.db.Question;
 import com.tanhua.domain.db.UserInfo;
 import com.tanhua.domain.mongo.RecommendUser;
-import com.tanhua.domain.vo.PageResult;
-import com.tanhua.domain.vo.RecommendUserQueryParam;
-import com.tanhua.domain.vo.RecommendUserVo;
+import com.tanhua.domain.vo.*;
 import com.tanhua.dubbo.api.QuestionApi;
 import com.tanhua.dubbo.api.UserInfoApi;
 import com.tanhua.dubbo.api.mongo.RecommendUserApi;
@@ -24,6 +22,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * 佳人业务处理
@@ -180,12 +179,39 @@ public class RecommendUserService {
         String strangerQuestion = question == null ? "你喜欢我吗?" : question.getTxt();
         //5. 构建环信内容
         Map<String,Object> mesMap=new HashMap<>();
-        mesMap.put("userId", UserHolder.getUserId());
+        mesMap.put("userId", userId);
         mesMap.put("nickname", nickname);
         mesMap.put("strangerQuestion",strangerQuestion  );
         mesMap.put("reply", reply);
 
         //6.调用环信发送信息
         huanXinTemplate.sendMsg(userId.toString(),JSON.toJSONString(mesMap));
+    }
+
+    /**
+     * 搜附近
+     * @param gender
+     * @param distance
+     * @return
+     */
+    public List<NearUserVo> searchNearBy(String gender, Long distance) {
+        //1.获取登录用户id
+        Long loginUserId = UserHolder.getUserId();
+        //2.根据用户id查询附近的人
+       List<UserLocationVo> userLocationVoList= recommendUserApi.searchNearBy(loginUserId,distance);
+        List<NearUserVo> voList=new ArrayList<>();
+       //3.补全附近的人信息，过滤昵称
+        if(!CollectionUtils.isEmpty(userLocationVoList)){
+            List<Long> userLocationIds = userLocationVoList.stream().map(UserLocationVo::getUserId).collect(Collectors.toList());
+            List<UserInfo> userInfoList = userInfoApi.findByBatchId(userLocationIds);
+            //性别过滤并转vo，filter(保留)
+            voList = userInfoList.stream().filter(userInfo -> userInfo.getGender().equals(gender)).map(userInfo -> {
+                NearUserVo vo = new NearUserVo();
+                BeanUtils.copyProperties(userInfo, vo);
+                vo.setUserId(userInfo.getId());
+                return vo;
+            }).collect(Collectors.toList());
+        }
+        return voList;
     }
 }

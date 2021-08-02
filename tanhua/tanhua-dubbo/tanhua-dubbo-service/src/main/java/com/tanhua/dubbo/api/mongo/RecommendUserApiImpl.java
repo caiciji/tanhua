@@ -1,13 +1,19 @@
 package com.tanhua.dubbo.api.mongo;
 
 import com.tanhua.domain.mongo.RecommendUser;
+import com.tanhua.domain.mongo.UserLocation;
 import com.tanhua.domain.vo.PageResult;
+import com.tanhua.domain.vo.UserLocationVo;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.RandomUtils;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.geo.Circle;
+import org.springframework.data.geo.Distance;
+import org.springframework.data.geo.Metrics;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 
@@ -81,5 +87,42 @@ public class RecommendUserApiImpl implements RecommendUserApi {
             return RandomUtils.nextDouble(60,80);
         }
         return recommendUser.getScore();
+    }
+
+    /**
+     * 根据用户id查询附近的人
+     * @param loginUserId
+     * @param distance
+     * @return
+     */
+    @Override
+    public List<UserLocationVo> searchNearBy(Long loginUserId, Long distance) {
+        //1.获取登录者的坐标
+        Query query=new Query(Criteria.where("userId").is(loginUserId));
+        UserLocation loginUserLocation = mongoTemplate.findOne(query, UserLocation.class);
+        List<UserLocationVo> result=new ArrayList<>();
+        //判断 登陆用是否记录坐标
+        if(null !=loginUserLocation){
+            //有坐标才能搜附近
+            //登录用户的坐标
+            GeoJsonPoint location = loginUserLocation.getLocation();
+            //2.以半经distance构建圆Cycle
+            //p1: 数值
+            //p2: 衡量单位 Metrics.KILOMETERS 千米 公里
+            Distance radius=new Distance(distance.doubleValue()/1000, Metrics.KILOMETERS);
+            //p1： 圆心所在的坐标
+            //p2: 半径
+            Circle circle=new Circle(location,radius);
+            //调用mongo来查询
+            //首先排除登录用户
+            Query neaByQuery=new Query(Criteria.where("userId").ne(loginUserId));
+            //范围查询
+            neaByQuery.addCriteria(Criteria.where("location").withinSphere(circle));
+            List<UserLocation> userLocations = mongoTemplate.find(neaByQuery, UserLocation.class);
+            //把userLocations转成vo 怕GeoJsonPoint类型 反序列化失败
+            result = UserLocationVo.formatToList(userLocations);
+
+        }
+        return result;
     }
 }

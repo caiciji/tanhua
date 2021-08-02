@@ -2,6 +2,9 @@ package com.tanhua.dubbo.api.mongo;
 
 import com.tanhua.domain.mongo.RecommendUser;
 import com.tanhua.domain.vo.PageResult;
+import com.tanhua.domain.vo.UserLocationVo;
+
+import java.util.List;
 
 public interface RecommendUserApi {
 
@@ -28,4 +31,12 @@ public interface RecommendUserApi {
      * @return
      */
     Double queryForScore(Long loginUserId, Long userId);
+
+    /**
+     * 根据用户id查询附近的人
+     * @param loginUserId
+     * @param distance
+     * @return
+     */
+    List<UserLocationVo> searchNearBy(Long loginUserId, Long distance);
 }
