@@ -13,6 +13,7 @@
         <module>tanhua-domain</module>
         <module>tanhua-dubbo</module>
         <module>tanhua-server</module>
+        <module>tanhua-manage</module>
     </modules>
 
     <parent>
