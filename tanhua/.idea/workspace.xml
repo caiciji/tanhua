@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4f4edb91-b435-44d3-8473-c578c8a5326d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/tanhua-server/src/main/java/com/tanhua/server/controller/MomentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/tanhua-server/src/main/java/com/tanhua/server/controller/MomentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tanhua-server/src/main/java/com/tanhua/server/service/RecommendUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/tanhua-server/src/main/java/com/tanhua/server/service/RecommendUserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tanhua-manage/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tanhua-manage/src/main/java/com/tanhua/manage/controller/AnalysisController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tanhua-manage/src/main/java/com/tanhua/manage/mapper/LogMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tanhua-manage/src/main/java/com/tanhua/manage/service/AnalysisService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tanhua-manage/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tanhua-server/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/tanhua-server/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -14,8 +18,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -25,6 +29,7 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
+        <option name="localRepository" value="C:\development\idea_Information_Folder\repository" />
         <option name="mavenHome" value="$PROJECT_DIR$/../../../development/apache-maven-3.5.3" />
         <option name="userSettingsFile" value="C:\development\apache-maven-3.5.3\conf\settings.xml" />
       </MavenGeneralSettings>
@@ -40,7 +45,9 @@
     <option name="jreName" value="#JAVA_HOME" />
   </component>
   <component name="ProjectId" id="1vqQBcFPbdIvvU76Dyrps27Hknz" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
     <option name="sortByType" value="true" />
@@ -64,16 +71,21 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="project.structure.last.edited" value="SDKs" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="spring.boot" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
+  <component name="ReadonlyStatusHandler">
+    <option name="SHOW_DIALOG" value="false" />
+  </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.tanhua.manage.mapper" />
+      <recent name="com.tanhua.manage.service" />
       <recent name="com.tanhua.dubbo.api.mongo" />
       <recent name="com.tanhua.server.service" />
       <recent name="com.tanhua.dubbo.api" />
@@ -86,50 +98,34 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.TanhuaServerApplication">
-    <configuration name="CacheTest.testFind" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="tanhua-server" />
+  <component name="RunManager" selected="Spring Boot.ManagerServerApplication">
+    <configuration name="TestVisitors.testSave" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="tanhua-dubbo-service" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.tanhua.server.test.*" />
+          <option name="PATTERN" value="com.tanhua.dubbo.test.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.tanhua.server.test" />
-      <option name="MAIN_CLASS_NAME" value="com.tanhua.server.test.CacheTest" />
-      <option name="METHOD_NAME" value="testFind" />
+      <option name="PACKAGE_NAME" value="com.tanhua.dubbo.test" />
+      <option name="MAIN_CLASS_NAME" value="com.tanhua.dubbo.test.TestVisitors" />
+      <option name="METHOD_NAME" value="testSave" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CacheTest.testUpdate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="tanhua-server" />
+    <configuration name="UserLocationTest.addLocation" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="tanhua-dubbo-service" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.tanhua.server.test.*" />
+          <option name="PATTERN" value="com.tanhua.dubbo.test.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.tanhua.server.test" />
-      <option name="MAIN_CLASS_NAME" value="com.tanhua.server.test.CacheTest" />
-      <option name="METHOD_NAME" value="testUpdate" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="HuanXinTest.testRegister" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="tanhua-server" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.tanhua.server.test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.tanhua.server.test" />
-      <option name="MAIN_CLASS_NAME" value="com.tanhua.server.test.HuanXinTest" />
-      <option name="METHOD_NAME" value="testRegister" />
+      <option name="PACKAGE_NAME" value="com.tanhua.dubbo.test" />
+      <option name="MAIN_CLASS_NAME" value="com.tanhua.dubbo.test.UserLocationTest" />
+      <option name="METHOD_NAME" value="addLocation" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -148,6 +144,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ManagerServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="tanhua-manage" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.tanhua.manage.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.tanhua.manage.ManagerServerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="TanhuaServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="tanhua-server" />
       <extension name="coverage">
@@ -162,19 +171,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.CacheTest.testFind" />
-      <item itemvalue="JUnit.CacheTest.testUpdate" />
-      <item itemvalue="JUnit.HuanXinTest.testRegister" />
+      <item itemvalue="JUnit.TestVisitors.testSave" />
+      <item itemvalue="JUnit.UserLocationTest.addLocation" />
       <item itemvalue="Spring Boot.TanhuaServerApplication" />
       <item itemvalue="Spring Boot.DubboServiceApplication" />
+      <item itemvalue="Spring Boot.ManagerServerApplication" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Spring Boot.ManagerServerApplication" />
         <item itemvalue="Spring Boot.TanhuaServerApplication" />
         <item itemvalue="Spring Boot.DubboServiceApplication" />
-        <item itemvalue="JUnit.HuanXinTest.testRegister" />
-        <item itemvalue="JUnit.CacheTest.testFind" />
-        <item itemvalue="JUnit.CacheTest.testUpdate" />
+        <item itemvalue="JUnit.UserLocationTest.addLocation" />
+        <item itemvalue="JUnit.TestVisitors.testSave" />
       </list>
     </recent_temporary>
   </component>
@@ -201,7 +210,11 @@
       <workItem from="1627630648565" duration="13784000" />
       <workItem from="1627693816263" duration="12537000" />
       <workItem from="1627776764870" duration="844000" />
-      <workItem from="1627779387898" duration="2962000" />
+      <workItem from="1627779387898" duration="3982000" />
+      <workItem from="1627808690407" duration="11023000" />
+      <workItem from="1627823885575" duration="3476000" />
+      <workItem from="1627862855683" duration="14726000" />
+      <workItem from="1627985008714" duration="5263000" />
     </task>
     <task id="LOCAL-00001" summary="第一次上传">
       <created>1627705425003</created>
@@ -217,7 +230,21 @@
       <option name="project" value="LOCAL" />
       <updated>1627714122561</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="添加了搜附近">
+      <created>1627898062119</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1627898062120</updated>
+    </task>
+    <task id="LOCAL-00004" summary="添加了搜附近">
+      <created>1627898356961</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1627898356961</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -227,89 +254,102 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="第一次上传" />
-    <option name="LAST_COMMIT_MESSAGE" value="第一次上传" />
+    <MESSAGE value="添加了搜附近" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加了搜附近" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="574" y="118" key="#com.intellij.ide.util.MemberChooser" timestamp="1627702719162">
+    <state x="249" y="0" key="#Project_Structure" timestamp="1627899593992">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="574" y="118" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1627702719162" />
-    <state x="244" y="0" key="CommitChangelistDialog2" timestamp="1627714120968">
+    <state x="249" y="0" key="#Project_Structure/0.0.1536.824@0.0.1536.824" timestamp="1627899593992" />
+    <state x="574" y="118" key="#com.intellij.ide.util.MemberChooser" timestamp="1627896194869">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="244" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1627714120968" />
+    <state x="574" y="118" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1627896194869" />
+    <state x="498" y="188" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1627893399392">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="498" y="188" key="#com.intellij.ide.util.PackageChooserDialog/0.0.1536.824@0.0.1536.824" timestamp="1627893399392" />
+    <state x="244" y="0" key="CommitChangelistDialog2" timestamp="1627898356467">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="244" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1627898356467" />
+    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog" timestamp="1627895238301">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1627895238301" />
     <state x="549" y="153" key="FileChooserDialogImpl" timestamp="1627705388115">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="153" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1627705388115" />
-    <state x="195" y="316" key="Github.CreateGistDialog" timestamp="1627640576061">
+    <state x="195" y="316" key="Github.CreateGistDialog" timestamp="1627897733053">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="195" y="316" key="Github.CreateGistDialog/0.0.1536.824@0.0.1536.824" timestamp="1627640576061" />
+    <state x="195" y="316" key="Github.CreateGistDialog/0.0.1536.824@0.0.1536.824" timestamp="1627897733053" />
     <state x="640" y="310" key="Github.ShareDialog" timestamp="1627705311402">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="640" y="310" key="Github.ShareDialog/0.0.1536.824@0.0.1536.824" timestamp="1627705311401" />
-    <state width="1258" height="402" key="GridCell.Tab.0.bottom" timestamp="1627714213854">
+    <state width="1332" height="522" key="GridCell.Tab.0.bottom" timestamp="1627990077182">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1258" height="402" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1627714213854" />
-    <state width="1258" height="402" key="GridCell.Tab.0.center" timestamp="1627714213854">
+    <state width="1332" height="522" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1627990077182" />
+    <state width="1332" height="522" key="GridCell.Tab.0.center" timestamp="1627990077182">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1258" height="402" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1627714213854" />
-    <state width="1258" height="402" key="GridCell.Tab.0.left" timestamp="1627714213854">
+    <state width="1332" height="522" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1627990077182" />
+    <state width="1332" height="522" key="GridCell.Tab.0.left" timestamp="1627990077182">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1258" height="402" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1627714213854" />
-    <state width="1258" height="402" key="GridCell.Tab.0.right" timestamp="1627714213854">
+    <state width="1332" height="522" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1627990077182" />
+    <state width="1332" height="522" key="GridCell.Tab.0.right" timestamp="1627990077182">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1258" height="402" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1627714213854" />
-    <state width="1258" height="402" key="GridCell.Tab.1.bottom" timestamp="1627714213854">
+    <state width="1332" height="522" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1627990077182" />
+    <state width="1332" height="522" key="GridCell.Tab.1.bottom" timestamp="1627990077182">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1258" height="402" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1627714213854" />
-    <state width="1258" height="402" key="GridCell.Tab.1.center" timestamp="1627714213854">
+    <state width="1332" height="522" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1627990077182" />
+    <state width="1332" height="522" key="GridCell.Tab.1.center" timestamp="1627990077182">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1258" height="402" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1627714213854" />
-    <state width="1258" height="402" key="GridCell.Tab.1.left" timestamp="1627714213854">
+    <state width="1332" height="522" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1627990077182" />
+    <state width="1332" height="522" key="GridCell.Tab.1.left" timestamp="1627990077182">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1258" height="402" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1627714213854" />
-    <state width="1258" height="402" key="GridCell.Tab.1.right" timestamp="1627714213854">
+    <state width="1332" height="522" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1627990077182" />
+    <state width="1332" height="522" key="GridCell.Tab.1.right" timestamp="1627990077182">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1258" height="402" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1627714213854" />
-    <state width="1224" height="288" key="GridCell.Tab.2.bottom" timestamp="1627700294167">
+    <state width="1332" height="522" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1627990077182" />
+    <state width="1332" height="368" key="GridCell.Tab.2.bottom" timestamp="1627989222718">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1224" height="288" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1627700294167" />
-    <state width="1224" height="288" key="GridCell.Tab.2.center" timestamp="1627700294167">
+    <state width="1332" height="368" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1627989222718" />
+    <state width="1332" height="368" key="GridCell.Tab.2.center" timestamp="1627989222717">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1224" height="288" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1627700294167" />
-    <state width="1224" height="288" key="GridCell.Tab.2.left" timestamp="1627700294166">
+    <state width="1332" height="368" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1627989222717" />
+    <state width="1332" height="368" key="GridCell.Tab.2.left" timestamp="1627989222717">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1224" height="288" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1627700294166" />
-    <state width="1224" height="288" key="GridCell.Tab.2.right" timestamp="1627700294167">
+    <state width="1332" height="368" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1627989222717" />
+    <state width="1332" height="368" key="GridCell.Tab.2.right" timestamp="1627989222718">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1224" height="288" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1627700294167" />
-    <state x="249" y="0" key="SettingsEditor" timestamp="1627634861831">
+    <state width="1332" height="368" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1627989222718" />
+    <state x="249" y="0" key="SettingsEditor" timestamp="1627894880396">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="249" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1627634861831" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1627714131463">
+    <state x="249" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1627894880396" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1627898364152">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1627714131463" />
-    <state x="682" y="190" key="chooseDestDirectoryDialog" timestamp="1627696280596">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1627898364152" />
+    <state x="682" y="190" key="chooseDestDirectoryDialog" timestamp="1627893402664">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="682" y="190" key="chooseDestDirectoryDialog/0.0.1536.824@0.0.1536.824" timestamp="1627696280596" />
+    <state x="682" y="190" key="chooseDestDirectoryDialog/0.0.1536.824@0.0.1536.824" timestamp="1627893402664" />
     <state x="313" y="141" width="909" height="640" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1627566616345">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -318,13 +358,32 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="570" y="319" key="git4idea.remote.GitConfigureRemotesDialog/0.0.1536.824@0.0.1536.824" timestamp="1627705502221" />
-    <state x="46" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1627704178426">
+    <state x="178" y="73" key="new project wizard" timestamp="1627899426775">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="46" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1627704178426" />
+    <state x="178" y="73" key="new project wizard/0.0.1536.824@0.0.1536.824" timestamp="1627899426775" />
+    <state x="46" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1627896603450">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="46" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1627896603450" />
     <state x="599" y="203" key="svn.repositoryBrowser" timestamp="1627705345847">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="599" y="203" key="svn.repositoryBrowser/0.0.1536.824@0.0.1536.824" timestamp="1627705345847" />
+    <state x="491" y="324" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1627985255236">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="491" y="324" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/0.0.1536.824@0.0.1536.824" timestamp="1627985255236" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/tanhua-manage/src/main/java/com/tanhua/manage/service/AnalysisService.java</url>
+          <line>39</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

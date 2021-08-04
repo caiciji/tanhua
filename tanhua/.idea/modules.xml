@@ -8,6 +8,7 @@
       <module fileurl="file://$PROJECT_DIR$/tanhua-dubbo/tanhua-dubbo.iml" filepath="$PROJECT_DIR$/tanhua-dubbo/tanhua-dubbo.iml" />
       <module fileurl="file://$PROJECT_DIR$/tanhua-dubbo/tanhua-dubbo-interface/tanhua-dubbo-interface.iml" filepath="$PROJECT_DIR$/tanhua-dubbo/tanhua-dubbo-interface/tanhua-dubbo-interface.iml" />
       <module fileurl="file://$PROJECT_DIR$/tanhua-dubbo/tanhua-dubbo-service/tanhua-dubbo-service.iml" filepath="$PROJECT_DIR$/tanhua-dubbo/tanhua-dubbo-service/tanhua-dubbo-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tanhua-manage/tanhua-manage.iml" filepath="$PROJECT_DIR$/tanhua-manage/tanhua-manage.iml" />
       <module fileurl="file://$PROJECT_DIR$/tanhua-server/tanhua-server.iml" filepath="$PROJECT_DIR$/tanhua-server/tanhua-server.iml" />
     </modules>
   </component>
